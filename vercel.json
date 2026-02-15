@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/:shortCode(\\w{6})",
+            "destination": "https://y1iyd6cvtc.execute-api.us-east-1.amazonaws.com/url-shortner-prod/:shortCode"
+        }
+    ]
+}
