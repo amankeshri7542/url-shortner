@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const LAMBDA_API = 'https://y1iyd6cvtc.execute-api.us-east-1.amazonaws.com/url-shortner-prod/shorten';
+const LAMBDA_API = 'https://o4t5lb8wo4.execute-api.us-east-1.amazonaws.com/prod/shorten';
 
 export async function POST(request: Request) {
   try {

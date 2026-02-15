@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const LAMBDA_REDIRECT_API = 'https://y1iyd6cvtc.execute-api.us-east-1.amazonaws.com/url-shortner-prod';
+const LAMBDA_REDIRECT_API = 'https://o4t5lb8wo4.execute-api.us-east-1.amazonaws.com/prod';
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
