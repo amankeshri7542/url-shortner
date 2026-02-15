@@ -6,20 +6,26 @@ const LAMBDA_REDIRECT_API = 'https://y1iyd6cvtc.execute-api.us-east-1.amazonaws.
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
-  // Skip middleware for known routes and assets
-  const skipPaths = [
+  // Skip middleware for exact root path
+  if (pathname === '/') {
+    return NextResponse.next();
+  }
+
+  // Skip middleware for known routes and assets (prefix match)
+  const skipPrefixes = [
     '/_next',
     '/api',
     '/work',
     '/url-shortner',
-    '/',
-    '/favicon.ico',
-    '/robots.txt',
-    '/sitemap.xml',
   ];
   
-  // Check if path should be skipped
-  if (skipPaths.some(path => pathname.startsWith(path))) {
+  if (skipPrefixes.some(prefix => pathname.startsWith(prefix))) {
+    return NextResponse.next();
+  }
+
+  // Skip known static files (exact match)
+  const skipExact = ['/favicon.ico', '/robots.txt', '/sitemap.xml'];
+  if (skipExact.includes(pathname)) {
     return NextResponse.next();
   }
   
@@ -53,7 +59,6 @@ export async function middleware(request: NextRequest) {
       }
       
       if (response.status === 404) {
-        // Short code not found, let Next.js handle 404
         console.log('Short code not found');
         return NextResponse.next();
       }
@@ -69,12 +74,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
     '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };
