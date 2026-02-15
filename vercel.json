@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/:shortCode(\\w{6})",
-            "destination": "https://y1iyd6cvtc.execute-api.us-east-1.amazonaws.com/url-shortner-prod/:shortCode"
+            "destination": "https://o4t5lb8wo4.execute-api.us-east-1.amazonaws.com/prod/:shortCode"
         }
     ]
 }
